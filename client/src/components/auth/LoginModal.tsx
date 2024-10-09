@@ -10,8 +10,16 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "../ui/button";
 import Image from "next/image";
+import { signIn } from "next-auth/react";
 
 const LoginModal = () => {
+  const handleLogin = () => {
+    signIn("google", {
+      callbackUrl: "/dashboard",
+      redirect: true,
+    });
+  };
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -22,9 +30,9 @@ const LoginModal = () => {
           <DialogTitle className="text-2xl">Welcome to Chat It</DialogTitle>
           <DialogDescription>Secure and Effortless chatting</DialogDescription>
         </DialogHeader>
-        <Button>
+        <Button variant="outline" onClick={handleLogin}>
           <Image
-            src="./images/google.png"
+            src="/images/google.png"
             className="mr-4"
             height={25}
             width={25}

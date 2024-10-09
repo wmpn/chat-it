@@ -5,25 +5,28 @@ import UserReviews from "@/components/base/UserReviews";
 import Footer from "@/components/base/Footer";
 import { getServerSession } from "next-auth";
 import { authOptions, CustomSession } from "./api/auth/[...nextauth]/options";
+import SessionProvider from "@/providers/SessionProvider";
 
 export default async function Home() {
   const session: CustomSession | null = await getServerSession(authOptions);
 
   return (
     <div className="">
-      {/* Header */}
-      <Navbar user={} />
-      {/* Hero Section */}
-      <HeroSection />
+      <SessionProvider>
+        {/* Header */}
+        <Navbar user={session?.user} />
+        {/* Hero Section */}
+        <HeroSection />
 
-      {/* Features Section */}
-      <FeatureSection />
+        {/* Features Section */}
+        <FeatureSection />
 
-      {/* User Reviews Section */}
-      <UserReviews />
+        {/* User Reviews Section */}
+        <UserReviews />
 
-      {/* Footer */}
-      <Footer />
+        {/* Footer */}
+        <Footer />
+      </SessionProvider>
     </div>
   );
 }
