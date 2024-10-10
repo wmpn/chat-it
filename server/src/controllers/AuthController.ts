@@ -36,7 +36,10 @@ class AuthController {
         expiresIn: "1h",
       });
 
-      return res.status(200).json({ ...findUser, token: `Bearer ${token}` });
+      console.log("token----: ", token);
+      return res
+        .status(200)
+        .json({ user: { ...findUser, token: `Bearer ${token}` } });
     } catch (error) {
       return res
         .status(500)
