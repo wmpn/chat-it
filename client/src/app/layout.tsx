@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import { Toaster } from "@/components/ui/sonner";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -22,10 +23,11 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          "flex min-h-screen flex-col items-center font-sans bg-background antialiased",
+          "flex min-h-screen flex-col font-sans bg-background antialiased",
           fontSans.variable
         )}
       >
+        <Toaster richColors duration={1000} />
         {children}
       </body>
     </html>

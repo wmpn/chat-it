@@ -40,7 +40,6 @@ export const authOptions: AuthOptions = {
           image: user?.image,
         };
 
-        console.log("The axios data: ", LOGIN_URL, payload);
         const { data } = await axios.post(LOGIN_URL, payload);
         user.id = data?.user?.id.toString();
         user.token = data?.user?.token;
@@ -62,7 +61,7 @@ export const authOptions: AuthOptions = {
       session.user = token.user as CustomUser;
       return session;
     },
-    async jwt({ token, user }) {
+    async jwt({ token, user }: { token: JWT; user?: CustomUser }) {
       if (user) {
         token.user = user;
       }
